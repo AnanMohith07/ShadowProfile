@@ -1,0 +1,37 @@
+{
+  "employment_alert": {
+    "title": "Employment Verification Scam",
+    "description": "This scenario demonstrates how publicly available employment information could be used to make a fraudulent message appear convincing.",
+    "template": {
+      "subject": "Security Notice Regarding Your {organization} Account",
+      "body": "Hello {name}, this example demonstrates how someone could reference your publicly listed organization ({organization}) to make a fake message appear trustworthy. Be cautious of unexpected requests asking you to verify your account or click links."
+    }
+  },
+
+  "location_awareness": {
+    "title": "Location-Based Scam",
+    "description": "This scenario demonstrates how publicly shared location information may be referenced in fraudulent messages.",
+    "template": {
+      "subject": "Important Update for Residents of {location}",
+      "body": "Hello {name}, this example shows how mentioning your public location ({location}) can make a message appear more relevant. Always verify the sender before taking any action."
+    }
+  },
+
+  "contact_awareness": {
+    "title": "Contact Information Misuse",
+    "description": "This scenario demonstrates how exposed contact details can be used in targeted spam or phishing campaigns.",
+    "template": {
+      "subject": "Account Verification Reminder",
+      "body": "Hello {name}, this educational example shows how publicly available contact information can be used to personalize fraudulent communications. Never share passwords or OTPs in response to unsolicited messages."
+    }
+  },
+
+  "identity_awareness": {
+    "title": "Identity Profiling",
+    "description": "This scenario demonstrates how combining multiple personal details can help attackers build a convincing profile.",
+    "template": {
+      "subject": "Personal Information Exposure",
+      "body": "This example illustrates how combining your name, location, workplace, and other publicly available information can make social engineering attacks more convincing."
+    }
+  }
+}

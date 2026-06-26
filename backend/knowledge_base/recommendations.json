@@ -1,0 +1,86 @@
+{
+  "EMAIL": {
+    "risk": "High",
+    "recommendation": "Use a secondary email address for public profiles and avoid exposing your primary email."
+  },
+
+  "PHONE": {
+    "risk": "High",
+    "recommendation": "Avoid publishing your personal phone number publicly. Consider using a secondary contact number."
+  },
+
+  "PERSON": {
+    "risk": "Low",
+    "recommendation": "Sharing your name is generally acceptable, but avoid combining it with sensitive personal information."
+  },
+
+  "LOCATION": {
+    "risk": "Medium",
+    "recommendation": "Avoid sharing your exact location or home address in public posts."
+  },
+
+  "ADDRESS": {
+    "risk": "High",
+    "recommendation": "Never publicly share your complete residential address."
+  },
+
+  "PASSWORD": {
+    "risk": "Critical",
+    "recommendation": "Never share passwords under any circumstances. Change the password immediately if it has been exposed."
+  },
+
+  "OTP": {
+    "risk": "Critical",
+    "recommendation": "Never disclose OTPs to anyone. Legitimate organizations will never ask for them."
+  },
+
+  "AADHAAR": {
+    "risk": "Critical",
+    "recommendation": "Avoid sharing your Aadhaar number publicly. Mask it whenever possible."
+  },
+
+  "PAN": {
+    "risk": "Critical",
+    "recommendation": "Keep your PAN confidential and share it only with trusted organizations when required."
+  },
+
+  "PASSPORT": {
+    "risk": "Critical",
+    "recommendation": "Do not upload or share passport details on public platforms."
+  },
+
+  "BANK_ACCOUNT": {
+    "risk": "Critical",
+    "recommendation": "Never expose your bank account number publicly."
+  },
+
+  "UPI": {
+    "risk": "High",
+    "recommendation": "Share your UPI ID only when necessary and verify payment requests carefully."
+  },
+
+  "CREDIT_CARD": {
+    "risk": "Critical",
+    "recommendation": "Never share your credit card number, CVV, or expiry date."
+  },
+
+  "CVV": {
+    "risk": "Critical",
+    "recommendation": "CVV should never be stored or shared."
+  },
+
+  "DATE_OF_BIRTH": {
+    "risk": "Medium",
+    "recommendation": "Avoid displaying your full date of birth publicly since it is commonly used for identity verification."
+  },
+
+  "IP_ADDRESS": {
+    "risk": "Medium",
+    "recommendation": "Avoid exposing your IP address publicly to reduce unnecessary security risks."
+  },
+
+  "URL": {
+    "risk": "Low",
+    "recommendation": "Verify that shared URLs do not reveal sensitive information."
+  }
+}

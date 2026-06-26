@@ -1,0 +1,36 @@
+{
+    "PERSON": 10,
+    "EMAIL": 20,
+    "PHONE": 25,
+    "LOCATION": 15,
+    "ADDRESS": 30,
+
+    "PASSWORD": 90,
+    "OTP": 90,
+    "PIN": 70,
+
+    "AADHAAR": 50,
+    "PAN": 50,
+    "PASSPORT": 50,
+    "DRIVING_LICENSE": 40,
+    "VOTER_ID": 40,
+
+    "BANK_ACCOUNT": 60,
+    "IFSC": 20,
+    "UPI": 35,
+    "CREDIT_CARD": 80,
+    "DEBIT_CARD": 70,
+    "CVV": 90,
+
+    "DATE_OF_BIRTH": 25,
+    "AGE": 5,
+    "GENDER": 5,
+
+    "URL": 5,
+    "IP_ADDRESS": 20,
+    "PINCODE": 10,
+
+    "SOCIAL_MEDIA": 10,
+    "PROFESSIONAL_PLATFORM": 5,
+    "DEVELOPER_PLATFORM": 5
+}

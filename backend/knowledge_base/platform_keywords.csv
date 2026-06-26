@@ -1,0 +1,22 @@
+platform,category,risk,description
+instagram,Social Media,Medium,Photo and video sharing platform
+facebook,Social Media,Medium,General social networking platform
+twitter,Social Media,Medium,Microblogging platform
+x,Social Media,Medium,Microblogging platform
+linkedin,Professional,Low,Professional networking platform
+github,Developer,Low,Code hosting and collaboration platform
+gitlab,Developer,Low,Code repository platform
+bitbucket,Developer,Low,Version control platform
+stackoverflow,Developer,Low,Developer Q&A platform
+reddit,Community,Low,Discussion forum platform
+discord,Messaging,Medium,Community and messaging platform
+telegram,Messaging,Medium,Cloud messaging platform
+whatsapp,Messaging,Medium,Instant messaging platform
+snapchat,Social Media,Medium,Multimedia messaging platform
+youtube,Content,Low,Video sharing platform
+tiktok,Content,Medium,Short video platform
+medium,Blogging,Low,Blogging platform
+quora,Community,Low,Question and answer platform
+gmail,Email,Low,Google email service
+outlook,Email,Low,Microsoft email service
+yahoo,Email,Low,Yahoo email service

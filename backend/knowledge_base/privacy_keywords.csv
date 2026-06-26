@@ -1,0 +1,43 @@
+keyword,category,risk
+password,Credentials,High
+passcode,Credentials,High
+otp,Credentials,High
+pin,Credentials,High
+security answer,Credentials,High
+
+email,Contact,High
+e-mail,Contact,High
+phone,Contact,High
+mobile,Contact,High
+contact number,Contact,High
+
+address,Location,High
+home address,Location,High
+location,Location,Medium
+city,Location,Medium
+state,Location,Medium
+country,Location,Low
+zipcode,Location,Medium
+postal code,Location,Medium
+pincode,Location,Medium
+
+aadhaar,Government ID,Critical
+aadhar,Government ID,Critical
+pan,Government ID,Critical
+passport,Government ID,Critical
+driving licence,Government ID,High
+voter id,Government ID,High
+
+bank account,Financial,Critical
+account number,Financial,Critical
+ifsc,Financial,High
+upi,Financial,High
+credit card,Financial,Critical
+debit card,Financial,Critical
+cvv,Financial,Critical
+
+salary,Personal,Medium
+date of birth,Personal,High
+dob,Personal,High
+age,Personal,Low
+gender,Personal,Low
