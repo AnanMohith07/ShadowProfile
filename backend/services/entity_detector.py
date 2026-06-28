@@ -2,6 +2,7 @@ import os
 import re
 import json
 import csv
+from rich import text
 import spacy
 
 nlp = spacy.load("en_core_web_sm")
@@ -52,4 +53,79 @@ class EntityDetector:
                     "risk": details["risk"],
                     "description": details["description"]
                 })
+        return results
+    
+    def detect_spacy(self, text):
+        results = []
+        doc = nlp(text)
+        VALID_LABELS = {
+            "PERSON",
+            "ORG",
+            "GPE",
+            "LOC"
+        }
+        # Ignore common false positives
+        IGNORE_WORDS = {
+            "otp",
+            "password",
+            "email",
+            "phone",
+            "aadhaar",
+            "pan",
+            "github",
+            "instagram",
+            "gmail",
+            "linkedin",
+            "discord"
+        }
+
+        for entity in doc.ents:
+            if entity.label_ not in VALID_LABELS:
+                continue
+
+            if entity.text.lower() in IGNORE_WORDS:
+                continue
+
+            results.append({
+                "type": entity.label_,
+                "value": entity.text,
+                "method": "spaCy"
+            })
+        return results
+
+    def detect_keywords(self, text):
+        results = []
+        text_lower = text.lower()
+        for keyword in self.privacy_keywords:
+           if keyword["keyword"].lower() in text_lower:
+                results.append({
+                    "type": keyword["category"],
+                    "category": keyword["category"],
+                    "value": keyword["keyword"],
+                    "method": "Keyword",
+                    "risk": keyword["risk"]
+                })
+        return results
+    
+    def detect_platforms(self, text):
+        results = []
+        text_lower = text.lower()
+        for platform in self.platform_keywords:
+            if platform["platform"].lower() in text_lower:
+                results.append({
+                    "type": "PLATFORM",
+                    "category": platform["category"],
+                    "value": platform["platform"],
+                    "method": "Keyword",
+                    "risk": platform["risk"],
+                    "description": platform["description"]
+                })
+        return results
+
+    def analyze_text(self, text):
+        results = []
+        results.extend(self.detect_regex(text))
+        results.extend(self.detect_spacy(text))
+        results.extend(self.detect_keywords(text))
+        results.extend(self.detect_platforms(text))
         return results
