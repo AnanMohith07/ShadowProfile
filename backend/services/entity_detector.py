@@ -51,7 +51,8 @@ class EntityDetector:
                     "value": match,
                     "method": "Regex",
                     "risk": details["risk"],
-                    "description": details["description"]
+                    "description": details["description"],
+                    "risk_key": entity
                 })
         return results
     
@@ -89,7 +90,8 @@ class EntityDetector:
             results.append({
                 "type": entity.label_,
                 "value": entity.text,
-                "method": "spaCy"
+                "method": "spaCy",
+                "risk_key": entity.label_.upper()
             })
         return results
 
@@ -103,13 +105,20 @@ class EntityDetector:
                     "category": keyword["category"],
                     "value": keyword["keyword"],
                     "method": "Keyword",
-                    "risk": keyword["risk"]
+                    "risk": keyword["risk"],
+                    "risk_key": keyword["keyword"].upper().replace(" ", "_")
                 })
         return results
     
     def detect_platforms(self, text):
         results = []
         text_lower = text.lower()
+        category_map = {
+            "Social Media": "SOCIAL_MEDIA",
+            "Developer": "DEVELOPER_PLATFORM",
+            "Professional": "PROFESSIONAL_PLATFORM",
+            "Email": "EMAIL_PLATFORM"
+        }
         for platform in self.platform_keywords:
             if platform["platform"].lower() in text_lower:
                 results.append({
@@ -118,7 +127,8 @@ class EntityDetector:
                     "value": platform["platform"],
                     "method": "Keyword",
                     "risk": platform["risk"],
-                    "description": platform["description"]
+                    "description": platform["description"],
+                    "risk_key": category_map.get(platform["category"], "PLATFORM")
                 })
         return results
 
