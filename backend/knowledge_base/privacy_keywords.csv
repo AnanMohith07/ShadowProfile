@@ -5,12 +5,6 @@ otp,Credentials,High
 pin,Credentials,High
 security answer,Credentials,High
 
-email,Contact,High
-e-mail,Contact,High
-phone,Contact,High
-mobile,Contact,High
-contact number,Contact,High
-
 address,Location,High
 home address,Location,High
 location,Location,Medium
