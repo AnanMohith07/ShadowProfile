@@ -4,6 +4,9 @@
     "PHONE": 25,
     "LOCATION": 15,
     "ADDRESS": 30,
+    "ORG": 5,
+    "GPE": 10,
+
 
     "PASSWORD": 90,
     "OTP": 90,
@@ -32,5 +35,6 @@
 
     "SOCIAL_MEDIA": 10,
     "PROFESSIONAL_PLATFORM": 5,
-    "DEVELOPER_PLATFORM": 5
+    "DEVELOPER_PLATFORM": 5,
+    "EMAIL_PLATFORM": 5
 }
