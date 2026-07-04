@@ -82,5 +82,11 @@
   "URL": {
     "risk": "Low",
     "recommendation": "Verify that shared URLs do not reveal sensitive information."
+  },
+  "OVERALL": {
+    "LOW": "Your digital footprint is relatively safe. Continue following good privacy practices.",
+    "MEDIUM": "Some personal information is publicly visible. Review your shared content regularly.",
+    "HIGH": "Several sensitive details are exposed. Remove unnecessary personal information and strengthen your privacy settings.",
+    "CRITICAL": "Your profile contains highly sensitive information. Immediate action is recommended to reduce privacy and security risks."
   }
 }
