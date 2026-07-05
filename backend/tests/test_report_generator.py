@@ -31,20 +31,17 @@ https://github.com/AnanMohith07
 """
 
 entities = detector.analyze_text(text)
-
 grouped = analyzer.group_entities(entities)
-
 scores = risk_engine.calculate_category_scores(grouped)
-
 recommendations = recommendation_engine.generate_recommendations(
     grouped,
     scores
 )
-
 report = report_generator.generate_report(
     grouped,
     scores,
     recommendations
 )
-
+json_path = report_generator.save_json(report)
+print(json_path)
 print(json.dumps(report, indent=4))
