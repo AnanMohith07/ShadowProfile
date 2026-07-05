@@ -1,0 +1,59 @@
+{
+    "EMAIL": [
+        {
+            "attack": "Phishing",
+            "severity": "High",
+            "description": "Attackers can use exposed email addresses to send convincing phishing messages."
+        },
+        {
+            "attack": "Credential Stuffing",
+            "severity": "High",
+            "description": "Previously leaked passwords may be tested against this email address."
+        }
+    ],
+
+    "PHONE": [
+        {
+            "attack": "SIM Swap",
+            "severity": "Critical",
+            "description": "Attackers may attempt SIM swapping to gain control of phone-based authentication."
+        },
+        {
+            "attack": "Smishing",
+            "severity": "Medium",
+            "description": "Fraudulent SMS messages may target the exposed phone number."
+        }
+    ],
+
+    "PERSON": [
+        {
+            "attack": "Identity Profiling",
+            "severity": "Medium",
+            "description": "Publicly exposed names can help attackers build convincing social engineering profiles."
+        }
+    ],
+
+    "PASSWORD": [
+        {
+            "attack": "Account Compromise",
+            "severity": "Critical",
+            "description": "Exposed passwords can directly lead to unauthorized account access."
+        }
+    ],
+
+    "URL": [
+        {
+            "attack": "OSINT Profiling",
+            "severity": "Low",
+            "description": "Public URLs may reveal additional personal or professional information."
+        }
+    ],
+
+    "DEVELOPER_PLATFORM": [
+        {
+            "attack": "Developer Reconnaissance",
+            "severity": "Medium",
+            "description": "Public repositories may reveal technologies, projects, or sensitive code."
+        }
+    ]
+}
