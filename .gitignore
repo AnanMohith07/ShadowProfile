@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated reports
+backend/reports/json/*.json
+backend/reports/pdf/*.pdf
+backend/reports/html/*.html
+
+# Keep directories
+!backend/reports/json/.gitkeep
+!backend/reports/pdf/.gitkeep
+!backend/reports/html/.gitkeep

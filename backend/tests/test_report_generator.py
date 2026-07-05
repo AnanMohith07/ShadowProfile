@@ -42,6 +42,9 @@ report = report_generator.generate_report(
     scores,
     recommendations
 )
-json_path = report_generator.save_json(report)
-print(json_path)
-print(json.dumps(report, indent=4))
+#json_path = report_generator.save_json(report)
+#print(json_path)
+
+pdf_path = report_generator.export_pdf(report)
+print(pdf_path)
+#print(json.dumps(report, indent=4))

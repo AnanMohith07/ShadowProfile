@@ -1,3 +1,4 @@
+from fileinput import filename
 import json
 import os
 from datetime import datetime
@@ -88,4 +89,101 @@ class ReportGenerator:
         filepath = os.path.join(JSON_DIR, filename)
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(report, f, indent=4, ensure_ascii=False)
+        return filepath
+    
+    def export_pdf(self, report):
+        filename = f"{report['report_id']}.pdf"
+        filepath = os.path.join(PDF_DIR, filename)
+
+        doc = SimpleDocTemplate(filepath)
+        styles = getSampleStyleSheet()
+        story = []
+
+        # Title
+        story.append(Paragraph("ShadowProfile Privacy Report", styles["Title"]))
+        story.append(Spacer(1, 20))
+
+        # Summary
+        story.append(Paragraph("<b>Summary</b>", styles["Heading2"]))
+        summary = report["summary"]
+
+        story.append(Paragraph(f"Report ID: {report['report_id']}", styles["BodyText"]))
+        story.append(Paragraph(f"Generated At: {summary['generated_at']}", styles["BodyText"]))
+        story.append(Paragraph(f"Overall Risk: {summary['overall_risk']}", styles["BodyText"]))
+        story.append(Paragraph(f"Total Score: {summary['total_score']}", styles["BodyText"]))
+        story.append(Spacer(1, 15))
+
+        # Statistics
+        story.append(Paragraph("<b>Statistics</b>", styles["Heading2"]))
+        stats = report["statistics"]
+
+        for key, value in stats.items():
+            story.append(
+                Paragraph(
+                    f"{key.replace('_', ' ').title()}: {value}",
+                    styles["BodyText"]
+                )
+            )
+
+        story.append(Spacer(1, 15))
+
+        # Detected Entities
+        story.append(Paragraph("<b>Detected Entities</b>", styles["Heading2"]))
+
+        for category, entities in report["entities"].items():
+
+            if not entities:
+                continue
+
+            story.append(
+                Paragraph(category.replace("_", " ").title(), styles["Heading3"])
+            )
+
+            for entity in entities:
+                value = entity.get("value", "N/A")
+                entity_type = entity.get("type", "Unknown")
+
+                story.append(
+                    Paragraph(f"• {entity_type}: {value}", styles["BodyText"])
+                )
+
+            story.append(Spacer(1, 8))
+
+        # Category Scores
+        story.append(Paragraph("<b>Category Scores</b>", styles["Heading2"]))
+
+        for category, score in report["category_scores"].items():
+            story.append(
+                Paragraph(
+                    f"{category.replace('_',' ').title()}: {score}",
+                    styles["BodyText"]
+                )
+            )
+
+        story.append(Spacer(1, 15))
+
+        # Recommendations
+        story.append(Paragraph("<b>Recommendations</b>", styles["Heading2"]))
+
+        overall = report["recommendations"]["overall"]
+
+        story.append(
+            Paragraph(
+                f"<b>Overall:</b> {overall['message']}",
+                styles["BodyText"]
+            )
+        )
+
+        story.append(Spacer(1, 10))
+
+        for rec in report["recommendations"]["entity_recommendations"]:
+            story.append(
+                Paragraph(
+                    f"• <b>{rec['type']}</b>: {rec['recommendation']}",
+                    styles["BodyText"]
+                )
+            )
+
+        doc.build(story)
+
         return filepath
