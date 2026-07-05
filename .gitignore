@@ -218,11 +218,11 @@ __marimo__/
 .streamlit/secrets.toml
 
 # Generated reports
-backend/reports/json/*.json
-backend/reports/pdf/*.pdf
-backend/reports/html/*.html
+backend/reports/json/*
+backend/reports/pdf/*
+backend/reports/html/*
 
-# Keep directories
+# Keep the folders in Git
 !backend/reports/json/.gitkeep
 !backend/reports/pdf/.gitkeep
 !backend/reports/html/.gitkeep
