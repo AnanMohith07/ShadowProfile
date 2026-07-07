@@ -1,0 +1,39 @@
+{
+    "profession": [
+        "work at",
+        "works at",
+        "employee at",
+        "software engineer",
+        "developer",
+        "manager",
+        "student"
+    ],
+
+    "routine": [
+        "every day",
+        "every morning",
+        "every evening",
+        "every weekend",
+        "daily",
+        "weekly",
+        "every month"
+    ],
+
+    "travel": [
+        "travel",
+        "trip",
+        "vacation",
+        "visit",
+        "tour",
+        "journey"
+    ],
+
+    "interest": [
+        "love",
+        "like",
+        "enjoy",
+        "hobby",
+        "passion",
+        "favorite"
+    ]
+}
