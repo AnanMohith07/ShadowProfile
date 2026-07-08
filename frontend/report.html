@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report | ShadowProfile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/report.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- ==========================
+SIDEBAR
+========================== -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="bi bi-shield-lock-fill"></i>
+                <span>ShadowProfile</span>
+            </div>
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="bi bi-grid-fill"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="analyze.html">
+                        <i class="bi bi-search"></i>
+                        Analyze
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="report.html">
+                        <i class="bi bi-file-earmark-text"></i>
+                        Report
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="bi bi-person-circle"></i>
+                        Profile
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <!-- ==========================
+MAIN CONTENT
+========================== -->
+        <main class="main-content">
+            <div class="topbar">
+                <div>
+                    <h2>
+                        Analysis Report
+                    </h2>
+                    <p>
+                        Complete Digital Footprint Assessment
+                    </p>
+                </div>
+                <div>
+                    <button class="btn btn-warning">
+                        <i class="bi bi-download"></i>
+                        Download PDF
+                    </button>
+                </div>
+            </div>
+            <!-- ==========================
+PRIVACY SCORE
+========================== -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="score-card">
+                        <div class="circle-score">
+                            <h1 id="scoreValue">
+                                87%
+                            </h1>
+                        </div>
+                        <h4 class="mt-4">
+                            Privacy Score
+                        </h4>
+                        <p>
+                            Overall Exposure Level
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="summary-card">
+                        <h3>
+                            Privacy Assessment Summary
+                        </h3>
+                        <p>
+                            Your content contains a moderate amount of personal information.
+                            Some details may increase the effectiveness of phishing,
+                            social engineering, impersonation and privacy invasion attempts.
+                        </p>
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <div class="mini-card">
+                                    <i class="bi bi-person-fill"></i>
+                                    <h2>
+                                        4
+                                    </h2>
+                                    <p>
+                                        Identity
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mini-card">
+                                    <i class="bi bi-envelope-fill"></i>
+                                    <h2>
+                                        2
+                                    </h2>
+                                    <p>
+                                        Contact
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mini-card">
+                                    <i class="bi bi-shield-exclamation"></i>
+                                    <h2>
+                                        5
+                                    </h2>
+                                    <p>
+                                        Risk Alerts
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ==========================
+RISK BREAKDOWN
+========================== -->
+            <div class="row mt-4">
+                <div class="col-lg-6">
+                    <div class="report-card">
+                        <h4>
+                            Detected Categories
+                        </h4>
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="report-card">
+                        <h4>
+                            Privacy Risk Distribution
+                        </h4>
+                        <canvas id="riskChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- ==========================
+DETECTED INFORMATION
+========================== -->
+            <div class="report-card mt-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4>
+                        Detected Sensitive Information
+                    </h4>
+                    <button class="btn btn-outline-warning">
+                        Refresh
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Detected Value</th>
+                                <th>Category</th>
+                                <th>Risk Level</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="entityTable">
+                            <tr>
+                                <td>john@gmail.com</td>
+                                <td>Email</td>
+                                <td>
+                                    <span class="badge bg-danger">
+                                        High
+                                    </span>
+                                </td>
+                                <td>
+                                    Detected
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>+91 9876543210</td>
+                                <td>Phone</td>
+                                <td>
+                                    <span class="badge bg-danger">
+                                        High
+                                    </span>
+                                </td>
+                                <td>
+                                    Detected
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mangalore</td>
+                                <td>Location</td>
+                                <td>
+                                    <span class="badge bg-warning">
+                                        Medium
+                                    </span>
+                                </td>
+                                <td>
+                                    Detected
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>XYZ College</td>
+                                <td>Organization</td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        Low
+                                    </span>
+                                </td>
+                                <td>
+                                    Detected
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- ==========================
+AI RECOMMENDATIONS
+========================== -->
+            <div class="report-card mt-4">
+                <h4>
+                    Recommended Actions
+                </h4>
+                <div class="recommendation-list">
+                    <div class="recommendation success">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <div>
+                            <h5>
+                                Limit Personal Details
+                            </h5>
+                            <p>
+                                Avoid sharing your full address, birthday,
+                                phone number and personal identifiers publicly.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="recommendation warning">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <div>
+                            <h5>
+                                Reduce Location Sharing
+                            </h5>
+                            <p>
+                                Avoid revealing live locations or frequent places
+                                you visit on social media.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="recommendation danger">
+                        <i class="bi bi-shield-lock-fill"></i>
+                        <div>
+                            <h5>
+                                Protect Contact Information
+                            </h5>
+                            <p>
+                                Remove publicly visible email addresses and
+                                phone numbers whenever possible.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="recommendation info">
+                        <i class="bi bi-lightbulb-fill"></i>
+                        <div>
+                            <h5>
+                                Review Privacy Settings
+                            </h5>
+                            <p>
+                                Restrict profile visibility to trusted contacts
+                                and regularly review account privacy settings.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ==========================
+RISK SUMMARY
+========================== -->
+            <div class="row mt-4">
+                <div class="col-lg-4">
+                    <div class="risk-card danger">
+                        <h3>
+                            High Risk
+                        </h3>
+                        <h1>
+                            2
+                        </h1>
+                        <p>
+                            Sensitive Information
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="risk-card warning">
+                        <h3>
+                            Medium Risk
+                        </h3>
+                        <h1>
+                            2
+                        </h1>
+                        <p>
+                            Behavioral Exposure
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="risk-card success">
+                        <h3>
+                            Low Risk
+                        </h3>
+                        <h1>
+                            4
+                        </h1>
+                        <p>
+                            General Information
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- ==========================
+TIMELINE
+========================== -->
+            <div class="report-card mt-4">
+                <h4>
+                    Analysis Timeline
+                </h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div>
+                            <h5>
+                                Content Submitted
+                            </h5>
+                            <p>
+                                User submitted publicly shareable text.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div>
+                            <h5>
+                                Regex Detection
+                            </h5>
+                            <p>
+                                Emails, phone numbers and IDs detected.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div>
+                            <h5>
+                                NLP Analysis
+                            </h5>
+                            <p>
+                                Names, organizations and locations extracted.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div>
+                            <h5>
+                                Privacy Score Generated
+                            </h5>
+                            <p>
+                                Overall digital footprint assessment completed.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ==========================
+BOTTOM ACTIONS
+========================== -->
+            <div class="d-flex justify-content-between mt-4 mb-5">
+                <a href="dashboard.html" class="btn btn-outline-warning">
+                    <i class="bi bi-arrow-left"></i>
+                    Dashboard
+                </a>
+                <div>
+                    <button class="btn btn-outline-light me-2">
+                        <i class="bi bi-printer"></i>
+                        Print
+                    </button>
+                    <button class="btn btn-warning">
+                        <i class="bi bi-download"></i>
+                        Download Report
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Report JS -->
+    <script src="js/report.js"></script>
+</body>
+
+</html>

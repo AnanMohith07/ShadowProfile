@@ -1,0 +1,505 @@
+/* ==========================================
+   SHADOWPROFILE ANALYZE PAGE
+========================================== */
+:root {
+   --primary: #ff7a00;
+   --secondary: #ff9d2d;
+   --bg: #0b1120;
+   --card: #171f2e;
+   --card2: #101827;
+   --white: #ffffff;
+   --grey: #94a3b8;
+   --success: #22c55e;
+   --danger: #ef4444;
+   --shadow: 0 20px 50px rgba(0, 0, 0, .35);
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   font-family: 'Poppins', sans-serif;
+   background: var(--bg);
+   color: white;
+   overflow-x: hidden;
+}
+
+/* ===========================
+LAYOUT
+=========================== */
+.dashboard-container {
+   display: flex;
+   min-height: 100vh;
+}
+
+/* ===========================
+SIDEBAR
+=========================== */
+.sidebar {
+   width: 270px;
+   position: fixed;
+   height: 100vh;
+   background: #101623;
+   padding: 30px 20px;
+   border-right: 1px solid rgba(255, 255, 255, .05);
+}
+
+.logo {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   font-size: 28px;
+   font-weight: 700;
+   margin-bottom: 50px;
+}
+
+.logo i {
+   color: var(--primary);
+   font-size: 34px;
+}
+
+.sidebar ul {
+   list-style: none;
+   padding: 0;
+}
+
+.sidebar li {
+   margin-bottom: 10px;
+}
+
+.sidebar a {
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   padding: 15px;
+   border-radius: 14px;
+   color: #cbd5e1;
+   text-decoration: none;
+   transition: .35s;
+}
+
+.sidebar a:hover {
+   background: rgba(255, 122, 0, .12);
+   color: white;
+   transform: translateX(6px);
+}
+
+.sidebar .active a {
+   background: linear-gradient(135deg, #ff7a00, #ff9d2d);
+   color: white;
+}
+
+/* ===========================
+MAIN
+=========================== */
+.main-content {
+   margin-left: 270px;
+   width: 100%;
+   padding: 35px;
+}
+
+/* ===========================
+TOPBAR
+=========================== */
+.topbar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 30px;
+}
+
+.topbar p {
+   color: var(--grey);
+}
+
+/* ===========================
+CARD
+=========================== */
+.analyze-card {
+   background: var(--card);
+   padding: 35px;
+   border-radius: 22px;
+   box-shadow: var(--shadow);
+   margin-bottom: 30px;
+   border: 1px solid rgba(255, 255, 255, .05);
+}
+
+/* ===========================
+TEXTAREA
+=========================== */
+textarea {
+   background: #101827 !important;
+   border: 1px solid rgba(255, 255, 255, .08) !important;
+   color: white !important;
+   padding: 20px !important;
+   border-radius: 16px !important;
+   resize: none;
+   font-size: 16px;
+}
+
+textarea:focus {
+   box-shadow: 0 0 20px rgba(255, 122, 0, .15) !important;
+   border-color: var(--primary) !important;
+}
+
+/* ===========================
+UPLOAD
+=========================== */
+.upload-box {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 40px;
+   border: 2px dashed rgba(255, 255, 255, .15);
+   border-radius: 20px;
+   cursor: pointer;
+   transition: .35s;
+   background: #101827;
+   height: 220px;
+}
+
+.upload-box:hover {
+   border-color: var(--primary);
+   background: rgba(255, 122, 0, .08);
+}
+
+.upload-box i {
+   font-size: 55px;
+   color: var(--primary);
+   margin-bottom: 15px;
+}
+
+/* ===========================
+SCAN BOX
+=========================== */
+.scan-box {
+   background: #101827;
+   padding: 30px;
+   border-radius: 20px;
+   height: 220px;
+}
+
+.scan-box ul {
+   padding-left: 20px;
+}
+
+.scan-box li {
+   margin-bottom: 10px;
+   color: #d0d7e4;
+}
+
+/* ==========================================
+   LOADING CARD
+========================================== */
+.loading-card {
+   background: var(--card);
+   padding: 50px;
+   border-radius: 22px;
+   box-shadow: var(--shadow);
+   border: 1px solid rgba(255, 255, 255, .05);
+}
+
+/* ==========================================
+SCANNER
+========================================== */
+.scanner-circle {
+   width: 170px;
+   height: 170px;
+   margin: auto;
+   border-radius: 50%;
+   background: linear-gradient(135deg, #ff7a00, #ff9d2d);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   overflow: hidden;
+   box-shadow:
+      0 0 35px rgba(255, 122, 0, .35);
+   animation: pulseScanner 2s infinite;
+}
+
+.scanner-circle i {
+   font-size: 65px;
+   color: white;
+   z-index: 2;
+}
+
+.scanner-line {
+   position: absolute;
+   width: 100%;
+   height: 5px;
+   background: white;
+   opacity: .8;
+   top: 0;
+   animation: scanLine 2.5s infinite linear;
+}
+
+@keyframes scanLine {
+   0% {
+      top: 0;
+   }
+
+   100% {
+      top: 100%;
+   }
+}
+
+@keyframes pulseScanner {
+   0% {
+      transform: scale(1);
+   }
+
+   50% {
+      transform: scale(1.05);
+   }
+
+   100% {
+      transform: scale(1);
+   }
+}
+
+/* ==========================================
+PROGRESS
+========================================== */
+.progress {
+   height: 12px;
+   border-radius: 20px;
+   background: #202b40;
+}
+
+.progress-bar {
+   font-weight: 600;
+}
+
+/* ==========================================
+PREVIEW CARDS
+========================================== */
+.preview-card {
+   background: var(--card);
+   padding: 30px;
+   border-radius: 20px;
+   text-align: center;
+   box-shadow: var(--shadow);
+   transition: .35s;
+   margin-bottom: 25px;
+   border: 1px solid rgba(255, 255, 255, .05);
+}
+
+.preview-card:hover {
+   transform: translateY(-8px);
+   box-shadow: 0 20px 45px rgba(255, 122, 0, .25);
+}
+
+.preview-card i {
+   font-size: 42px;
+   color: var(--primary);
+   margin-bottom: 15px;
+}
+
+.preview-card h2 {
+   font-size: 42px;
+   font-weight: 700;
+}
+
+.preview-card p {
+   color: var(--grey);
+}
+
+/* ==========================================
+TABLE
+========================================== */
+.table {
+   margin-bottom: 0;
+}
+
+.table-dark {
+   background: transparent;
+}
+
+.table-dark th {
+   border-color: rgba(255, 255, 255, .05);
+   color: white;
+}
+
+.table-dark td {
+   border-color: rgba(255, 255, 255, .05);
+   color: #d9e2ef;
+}
+
+.table-hover tbody tr:hover {
+   background: rgba(255, 122, 0, .08);
+}
+
+/* ==========================================
+CHARTS
+========================================== */
+canvas {
+   width: 100% !important;
+}
+
+.chart-container {
+   height: 320px;
+}
+
+/* ==========================================
+BUTTONS
+========================================== */
+.btn-warning {
+   background: #ff7a00;
+   border: none;
+}
+
+.btn-warning:hover {
+   background: #ff9233;
+   transform: translateY(-3px);
+   box-shadow: 0 12px 25px rgba(255, 122, 0, .35);
+}
+
+.btn-outline-warning {
+   border: 2px solid #ff7a00;
+   color: #ff7a00;
+}
+
+.btn-outline-warning:hover {
+   background: #ff7a00;
+   color: white;
+}
+
+/* ==========================================
+BACKGROUND GLOW
+========================================== */
+body::before {
+   content: "";
+   position: fixed;
+   width: 550px;
+   height: 550px;
+   background:
+      radial-gradient(circle,
+         rgba(255, 122, 0, .12),
+         transparent 70%);
+   right: -220px;
+   top: -180px;
+   pointer-events: none;
+   z-index: -1;
+}
+
+body::after {
+   content: "";
+   position: fixed;
+   width: 450px;
+   height: 450px;
+   background:
+      radial-gradient(circle,
+         rgba(59, 130, 246, .10),
+         transparent 70%);
+   left: -180px;
+   bottom: -150px;
+   pointer-events: none;
+   z-index: -1;
+}
+
+/* ==========================================
+ANIMATIONS
+========================================== */
+.analyze-card,
+.preview-card,
+.scan-box,
+.upload-box {
+   animation: fadeUp .8s ease;
+}
+
+@keyframes fadeUp {
+   from {
+      opacity: 0;
+      transform: translateY(35px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+/* ==========================================
+HOVER EFFECTS
+========================================== */
+.analyze-card:hover {
+   border-color: rgba(255, 122, 0, .25);
+}
+
+.upload-box:hover i {
+   transform: scale(1.15);
+   transition: .3s;
+}
+
+.preview-card:hover i {
+   transform: rotateY(360deg);
+   transition: .8s;
+}
+
+/* ==========================================
+RESPONSIVE
+========================================== */
+@media(max-width:1200px) {
+   .main-content {
+      padding: 25px;
+   }
+}
+
+@media(max-width:992px) {
+   .sidebar {
+      left: -270px;
+   }
+
+   .main-content {
+      margin-left: 0;
+   }
+
+   .topbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+   }
+}
+
+@media(max-width:768px) {
+   .preview-card {
+      margin-bottom: 20px;
+   }
+
+   .upload-box,
+   .scan-box {
+      height: auto;
+   }
+
+   textarea {
+      height: 300px;
+   }
+}
+
+@media(max-width:576px) {
+   .main-content {
+      padding: 15px;
+   }
+
+   .analyze-card {
+      padding: 20px;
+   }
+
+   .scanner-circle {
+      width: 130px;
+      height: 130px;
+   }
+
+   .scanner-circle i {
+      font-size: 45px;
+   }
+
+   .preview-card h2 {
+      font-size: 32px;
+   }
+}

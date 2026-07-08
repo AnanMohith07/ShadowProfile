@@ -1,4 +1,6 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
+
 from config import Config
 from database.db import get_connection
 from routes.auth import auth_bp
@@ -6,6 +8,9 @@ from routes.analyze import analyze_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+CORS(app)
+
 app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(analyze_bp)
 

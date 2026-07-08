@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowProfile | Digital Footprint & Privacy Risk Analyzer</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">
+                <i class="bi bi-shield-lock-fill text-warning"></i>
+                ShadowProfile
+            </a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#workflow">Workflow</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="login.html" class="btn btn-outline-warning rounded-pill px-4">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="register.html" class="btn btn-warning rounded-pill px-4">
+                            Get Started
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero-section">
+        <!-- Animated Background -->
+        <div class="particles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <!-- Left -->
+                <div class="col-lg-6">
+                    <div data-aos="fade-right">
+                        <span class="badge hero-badge mb-4">
+                            AI Powered Privacy Analyzer
+                        </span>
+                        <h1 class="display-3 fw-bold text-white">
+                            Protect Your
+                            <span class="gradient-text">
+                                Digital Footprint
+                            </span>
+                        </h1>
+                        <p class="lead text-light mt-4">
+                            ShadowProfile analyzes your publicly shareable
+                            content using AI, NLP and Regex to identify
+                            sensitive information, calculate your privacy
+                            risk score and recommend ways to reduce your
+                            digital exposure.
+                        </p>
+                        <div class="hero-buttons mt-5">
+                            <a href="register.html" class="btn btn-warning btn-lg rounded-pill px-5 me-3">
+                                Get Started
+                            </a>
+                            <a href="#features" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                                Learn More
+                            </a>
+                        </div>
+                        <!-- Statistics -->
+                        <div class="row mt-5">
+                            <div class="col-4">
+                                <h2 class="text-warning fw-bold counter">
+                                    250+
+                                </h2>
+                                <small class="text-light">
+                                    Analyses
+                                </small>
+                            </div>
+                            <div class="col-4">
+                                <h2 class="text-warning fw-bold counter">
+                                    95%
+                                </h2>
+                                <small class="text-light">
+                                    Detection Accuracy
+                                </small>
+                            </div>
+                            <div class="col-4">
+                                <h2 class="text-warning fw-bold counter">
+                                    24/7
+                                </h2>
+                                <small class="text-light">
+                                    Privacy Monitoring
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right -->
+                <div class="col-lg-6">
+                    <div class="hero-image" data-aos="zoom-in">
+                        <div class="glass-card">
+                            <div class="shield-circle">
+                                <i class="bi bi-shield-lock-fill"></i>
+                            </div>
+                            <h3 class="text-white mt-4">
+                                Privacy Scan
+                            </h3>
+                            <div class="progress mt-4">
+                                <div class="progress-bar bg-warning" style="width:92%">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span class="text-light">
+                                        Email Exposure
+                                    </span>
+                                    <span class="badge bg-danger">
+                                        High
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span class="text-light">
+                                        Phone Number
+                                    </span>
+                                    <span class="badge bg-warning">
+                                        Medium
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span class="text-light">
+                                        Personal Details
+                                    </span>
+                                    <span class="badge bg-success">
+                                        Safe
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll Down -->
+        <div class="scroll-indicator">
+            <a href="#features">
+                <i class="bi bi-chevron-double-down"></i>
+            </a>
+        </div>
+    </section>
+    <!-- ================= FEATURES ================= -->
+    <section id="features" class="py-5 bg-dark">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge bg-warning text-dark px-3 py-2">
+                    OUR FEATURES
+                </span>
+                <h2 class="display-5 fw-bold text-white mt-3">
+                    Powerful Privacy Protection
+                </h2>
+                <p class="text-secondary">
+                    Discover how ShadowProfile helps identify and reduce your digital exposure.
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100" data-aos="zoom-in">
+                        <div class="feature-icon">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <h4>AI Analysis</h4>
+                        <p>
+                            Analyze social media posts, bios, resumes and
+                            public content using AI-powered NLP and Regex.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <h4>Privacy Score</h4>
+                        <p>
+                            Receive an intelligent privacy score that measures
+                            your overall digital exposure.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+                        <h4>Risk Detection</h4>
+                        <p>
+                            Detect exposed emails, phone numbers,
+                            locations, organizations and sensitive information.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100" data-aos="zoom-in">
+                        <div class="feature-icon">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h4>Recommendations</h4>
+                        <p>
+                            Personalized privacy recommendations
+                            help reduce oversharing and digital footprint.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="bi bi-bar-chart-line"></i>
+                        </div>
+                        <h4>Interactive Reports</h4>
+                        <p>
+                            View detailed reports with charts,
+                            detected entities and risk analysis.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <h4>Analysis History</h4>
+                        <p>
+                            Access all previous reports and monitor
+                            improvements in your privacy over time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================= WORKFLOW ================= -->
+    <section id="workflow" class="workflow-section py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge bg-warning text-dark">
+                    HOW IT WORKS
+                </span>
+                <h2 class="display-5 fw-bold text-white mt-3">
+                    Simple & Secure Workflow
+                </h2>
+            </div>
+            <div class="row text-center g-4">
+                <div class="col-lg-3">
+                    <div class="workflow-card">
+                        <div class="workflow-number">
+                            1
+                        </div>
+                        <i class="bi bi-file-earmark-text display-4 text-warning"></i>
+                        <h4 class="mt-4">
+                            Paste Content
+                        </h4>
+                        <p>
+                            Paste social media posts,
+                            bios or resumes.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="workflow-card">
+                        <div class="workflow-number">
+                            2
+                        </div>
+                        <i class="bi bi-cpu display-4 text-warning"></i>
+                        <h4 class="mt-4">
+                            AI Detection
+                        </h4>
+                        <p>
+                            Regex & NLP detect
+                            sensitive entities.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="workflow-card">
+                        <div class="workflow-number">
+                            3
+                        </div>
+                        <i class="bi bi-speedometer2 display-4 text-warning"></i>
+                        <h4 class="mt-4">
+                            Risk Assessment
+                        </h4>
+                        <p>
+                            Privacy engine calculates
+                            exposure score.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="workflow-card">
+                        <div class="workflow-number">
+                            4
+                        </div>
+                        <i class="bi bi-check-circle display-4 text-warning"></i>
+                        <h4 class="mt-4">
+                            Recommendations
+                        </h4>
+                        <p>
+                            Get personalized
+                            privacy improvements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="py-5 bg-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="assets/images/privacy-dashboard.png" class="img-fluid rounded-4 shadow-lg"
+                        alt="Dashboard Preview">
+                </div>
+                <div class="col-lg-6">
+                    <span class="badge bg-warning text-dark">
+                        ABOUT SHADOWPROFILE
+                    </span>
+                    <h2 class="display-5 fw-bold text-white mt-3">
+                        Understand Your Digital Footprint
+                    </h2>
+                    <p class="text-secondary mt-4">
+                        ShadowProfile helps users understand how
+                        publicly shared information can reveal personal
+                        details, behavioral patterns and increase
+                        exposure to phishing, impersonation and
+                        social engineering attacks.
+                    </p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-warning me-2"></i>
+                            AI Powered Analysis
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-warning me-2"></i>
+                            Digital Footprint Monitoring
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-warning me-2"></i>
+                            Privacy Risk Assessment
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-warning me-2"></i>
+                            Actionable Recommendations
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================= FAQ SECTION ================= -->
+    <section class="py-5 faq-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge bg-warning text-dark">
+                    FAQ
+                </span>
+                <h2 class="display-5 fw-bold text-white mt-3">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-secondary">
+                    Everything you need to know about ShadowProfile.
+                </p>
+            </div>
+            <div class="accordion accordion-flush" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q1">
+                            What does ShadowProfile analyze?
+                        </button>
+                    </h2>
+                    <div id="q1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            ShadowProfile analyzes publicly shareable text
+                            like social media posts, bios, resumes,
+                            descriptions and profile information.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">
+                            Is my data stored?
+                        </button>
+                    </h2>
+                    <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            User accounts and reports are securely managed
+                            by the Flask backend. The frontend never stores
+                            sensitive information locally.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q3">
+                            How is the Privacy Score calculated?
+                        </button>
+                    </h2>
+                    <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            The Privacy Risk Engine evaluates detected
+                            entities, personal identifiers,
+                            behavioral patterns and exposure level.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================= CALL TO ACTION ================= -->
+    <section class="cta-section py-5">
+        <div class="container">
+            <div class="cta-card text-center">
+                <h2 class="display-5 fw-bold text-white">
+                    Ready to Secure Your Digital Identity?
+                </h2>
+                <p class="text-light mt-3">
+                    Start analyzing your digital footprint today and
+                    discover hidden privacy risks before attackers do.
+                </p>
+                <div class="mt-4">
+                    <a href="register.html" class="btn btn-warning btn-lg rounded-pill px-5 me-3">
+                        Get Started
+                    </a>
+                    <a href="login.html" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                        Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================= FOOTER ================= -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <h3 class="text-warning">
+                        <i class="bi bi-shield-lock-fill"></i>
+                        ShadowProfile
+                    </h3>
+                    <p class="text-secondary mt-3">
+                        AI-powered Digital Footprint &
+                        Privacy Risk Analyzer helping users
+                        identify privacy exposure and improve
+                        online safety.
+                    </p>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="text-white">
+                        Navigation
+                    </h5>
+                    <ul class="list-unstyled mt-3">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#workflow">Workflow</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="text-white">
+                        Resources
+                    </h5>
+                    <ul class="list-unstyled mt-3">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="text-white">
+                        Connect
+                    </h5>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="bi bi-github"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-envelope-fill"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="text-center text-secondary">
+                © 2026 ShadowProfile
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+
+</html>

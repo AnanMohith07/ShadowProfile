@@ -1,0 +1,227 @@
+/* ===========================================
+   SHADOWPROFILE ANIMATIONS
+=========================================== */
+/* Floating animation */
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+    0% {
+        box-shadow:
+            0 0 20px rgba(255, 122, 0, .25);
+    }
+
+    50% {
+        box-shadow:
+            0 0 40px rgba(255, 122, 0, .45),
+            0 0 80px rgba(255, 122, 0, .25);
+    }
+
+    100% {
+        box-shadow:
+            0 0 20px rgba(255, 122, 0, .25);
+    }
+}
+
+/* Rotate */
+@keyframes rotateSlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Shine */
+@keyframes shine {
+    0% {
+        background-position: -300px;
+    }
+
+    100% {
+        background-position: 300px;
+    }
+}
+
+/* Fade Up */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide Left */
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide Right */
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scale */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Hero Animation */
+.hero-section h1 {
+    animation: fadeUp 1s ease;
+}
+
+.hero-section p {
+    animation: fadeUp 1.4s ease;
+}
+
+.hero-buttons {
+    animation: fadeUp 1.8s ease;
+}
+
+.hero-image {
+    animation: slideLeft 1.5s ease;
+}
+
+/* Glass Card */
+.glass-card {
+    animation: floating 5s ease-in-out infinite;
+}
+
+/* Shield */
+.shield-circle {
+    animation: pulseGlow 3s infinite;
+}
+
+/* Icons */
+.feature-icon {
+    animation: floating 4s ease-in-out infinite;
+}
+
+/* Workflow */
+.workflow-card {
+    animation: fadeUp .8s ease;
+}
+
+/* Feature Cards */
+.feature-card {
+    animation: scaleIn .7s ease;
+}
+
+/* Footer */
+.footer {
+    animation: fadeUp 1s ease;
+}
+
+/* Gradient Text */
+.gradient-text {
+    background-size: 300%;
+    animation: shine 4s linear infinite;
+}
+
+/* Hero Background */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle,
+            rgba(255, 122, 0, .18),
+            transparent 70%);
+    right: -250px;
+    top: -200px;
+    border-radius: 50%;
+    animation: rotateSlow 25s linear infinite;
+}
+
+/* Glow Border */
+.glass-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 25px;
+    background:
+        linear-gradient(45deg,
+            transparent,
+            rgba(255, 122, 0, .5),
+            transparent);
+    z-index: -1;
+    opacity: .5;
+}
+
+/* Hover Pulse */
+.feature-card:hover {
+    animation: pulseGlow 2s infinite;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    animation: floating 2s infinite;
+}
+
+/* Navbar */
+.custom-navbar {
+    transition: .4s;
+}
+
+/* Buttons */
+.btn {
+    transition: .35s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/* Hero Statistics */
+.counter {
+    animation: fadeUp 2s ease;
+}
+
+/* Social */
+.social-icons a:hover {
+    animation: floating .8s ease;
+}

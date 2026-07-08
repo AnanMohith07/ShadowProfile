@@ -1,0 +1,578 @@
+/* ==========================================
+   SHADOWPROFILE DASHBOARD
+========================================== */
+:root {
+   --primary: #ff7a00;
+   --primary-light: #ff9d2d;
+   --bg: #0b1120;
+   --card: #171f2e;
+   --card2: #111827;
+   --text: #ffffff;
+   --grey: #94a3b8;
+   --success: #22c55e;
+   --warning: #facc15;
+   --danger: #ef4444;
+   --shadow: 0 20px 50px rgba(0, 0, 0, .35);
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   font-family: 'Poppins', sans-serif;
+   background: var(--bg);
+   color: var(--text);
+   overflow-x: hidden;
+}
+
+/* =============================
+LAYOUT
+============================= */
+.dashboard-container {
+   display: flex;
+   min-height: 100vh;
+}
+
+/* =============================
+SIDEBAR
+============================= */
+.sidebar {
+   width: 270px;
+   background: #101623;
+   padding: 30px 20px;
+   position: fixed;
+   height: 100vh;
+   border-right: 1px solid rgba(255, 255, 255, .05);
+   transition: .4s;
+}
+
+.logo {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   font-size: 26px;
+   font-weight: 700;
+   margin-bottom: 50px;
+   color: white;
+}
+
+.logo i {
+   color: var(--primary);
+   font-size: 35px;
+}
+
+/* ============================= */
+.sidebar ul {
+   list-style: none;
+   padding-left: 0;
+}
+
+.sidebar li {
+   margin-bottom: 12px;
+}
+
+.sidebar a {
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   padding: 15px 18px;
+   border-radius: 14px;
+   color: #cbd5e1;
+   text-decoration: none;
+   transition: .35s;
+   font-size: 16px;
+}
+
+.sidebar a:hover {
+   background: rgba(255, 122, 0, .12);
+   color: white;
+   transform: translateX(8px);
+}
+
+.sidebar li.active a {
+   background: linear-gradient(135deg, #ff7a00, #ff9d2d);
+   color: white;
+   box-shadow: 0 10px 30px rgba(255, 122, 0, .3);
+}
+
+.sidebar i {
+   font-size: 20px;
+}
+
+/* =============================
+MAIN
+============================= */
+.main-content {
+   margin-left: 270px;
+   width: 100%;
+   padding: 35px;
+}
+
+/* =============================
+TOPBAR
+============================= */
+.topbar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 35px;
+}
+
+.topbar h3 {
+   font-weight: 700;
+}
+
+.topbar p {
+   color: var(--grey);
+}
+
+.profile-box {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   background: var(--card);
+   padding: 10px 20px;
+   border-radius: 40px;
+   box-shadow: var(--shadow);
+}
+
+.profile-box img {
+   width: 45px;
+   height: 45px;
+   border-radius: 50%;
+   border: 3px solid var(--primary);
+}
+
+/* =============================
+SCORE CARD
+============================= */
+.score-card {
+   background:
+      linear-gradient(135deg,
+         #ff7a00,
+         #ff9d2d);
+   border-radius: 25px;
+   padding: 35px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   box-shadow: 0 20px 50px rgba(255, 122, 0, .3);
+   margin-bottom: 30px;
+   color: white;
+}
+
+.score-card h1 {
+   font-size: 70px;
+   font-weight: 700;
+}
+
+.score-card i {
+   font-size: 90px;
+   opacity: .25;
+}
+
+/* =============================
+STATISTICS
+============================= */
+.stats-grid {
+   display: grid;
+   grid-template-columns:
+      repeat(4, 1fr);
+   gap: 25px;
+   margin-bottom: 35px;
+}
+
+.stat-card {
+   background: var(--card);
+   padding: 30px;
+   border-radius: 22px;
+   text-align: center;
+   box-shadow: var(--shadow);
+   transition: .35s;
+   border: 1px solid rgba(255, 255, 255, .05);
+}
+
+.stat-card:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 20px 50px rgba(255, 122, 0, .2);
+}
+
+.stat-card i {
+   font-size: 42px;
+   color: var(--primary);
+   margin-bottom: 15px;
+}
+
+.stat-card h3 {
+   font-size: 38px;
+   font-weight: 700;
+}
+
+.stat-card p {
+   color: var(--grey);
+}
+
+/* =============================
+COMMON CARD
+============================= */
+.dashboard-card {
+   background: var(--card);
+   padding: 30px;
+   border-radius: 22px;
+   margin-bottom: 30px;
+   box-shadow: var(--shadow);
+   border: 1px solid rgba(255, 255, 255, .05);
+}
+
+.card-header-custom {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 25px;
+}
+
+.card-header-custom h4 {
+   font-weight: 600;
+}
+
+.card-header-custom a {
+   color: var(--primary);
+   text-decoration: none;
+}
+
+canvas {
+   width: 100% !important;
+}
+
+/* ==========================================
+   QUICK ACTION CARDS
+========================================== */
+.action-card {
+   background: var(--card);
+   padding: 30px;
+   border-radius: 20px;
+   text-align: center;
+   transition: .35s;
+   height: 100%;
+   border: 1px solid rgba(255, 255, 255, .05);
+   position: relative;
+   overflow: hidden;
+}
+
+.action-card::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 4px;
+   background: linear-gradient(90deg, #ff7a00, #ffb347);
+   transition: .5s;
+}
+
+.action-card:hover::before {
+   left: 0;
+}
+
+.action-card:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 20px 40px rgba(255, 122, 0, .25);
+}
+
+.action-card i {
+   font-size: 50px;
+   color: var(--primary);
+   margin-bottom: 20px;
+}
+
+.action-card h5 {
+   font-weight: 600;
+   margin-bottom: 15px;
+}
+
+.action-card p {
+   color: var(--grey);
+   min-height: 55px;
+}
+
+/* ==========================================
+TABLE
+========================================== */
+.table {
+   margin-bottom: 0;
+}
+
+.table-dark {
+   background: transparent;
+}
+
+.table-dark th {
+   color: white;
+   border-color: rgba(255, 255, 255, .05);
+   font-weight: 600;
+}
+
+.table-dark td {
+   color: #dbe4f3;
+   border-color: rgba(255, 255, 255, .05);
+}
+
+.table-hover tbody tr {
+   transition: .3s;
+}
+
+.table-hover tbody tr:hover {
+   background: rgba(255, 122, 0, .08);
+}
+
+/* ==========================================
+TIP BOXES
+========================================== */
+.tip-box {
+   background: #1b2435;
+   padding: 25px;
+   border-radius: 18px;
+   height: 100%;
+   transition: .35s;
+   border: 1px solid rgba(255, 255, 255, .05);
+}
+
+.tip-box:hover {
+   transform: translateY(-8px);
+   box-shadow: 0 15px 35px rgba(255, 122, 0, .18);
+}
+
+.tip-box i {
+   font-size: 38px;
+   color: var(--primary);
+   margin-bottom: 15px;
+   display: block;
+}
+
+.tip-box h5 {
+   margin-bottom: 15px;
+}
+
+.tip-box p {
+   color: var(--grey);
+}
+
+/* ==========================================
+BUTTONS
+========================================== */
+.btn-warning {
+   background: var(--primary);
+   border: none;
+}
+
+.btn-warning:hover {
+   background: #ff9333;
+   transform: translateY(-2px);
+   box-shadow: 0 10px 25px rgba(255, 122, 0, .35);
+}
+
+.btn-outline-warning {
+   border: 2px solid var(--primary);
+   color: var(--primary);
+}
+
+.btn-outline-warning:hover {
+   background: var(--primary);
+   color: white;
+}
+
+/* ==========================================
+BADGES
+========================================== */
+.badge {
+   padding: 8px 14px;
+   font-size: 13px;
+   border-radius: 20px;
+}
+
+/* ==========================================
+SCROLLBAR
+========================================== */
+::-webkit-scrollbar {
+   width: 10px;
+}
+
+::-webkit-scrollbar-track {
+   background: #0b1120;
+}
+
+::-webkit-scrollbar-thumb {
+   background: #ff7a00;
+   border-radius: 20px;
+}
+
+/* ==========================================
+BACKGROUND GLOW
+========================================== */
+body::before {
+   content: "";
+   position: fixed;
+   width: 500px;
+   height: 500px;
+   background:
+      radial-gradient(circle,
+         rgba(255, 122, 0, .15),
+         transparent 70%);
+   right: -200px;
+   top: -150px;
+   pointer-events: none;
+   z-index: -1;
+}
+
+body::after {
+   content: "";
+   position: fixed;
+   width: 450px;
+   height: 450px;
+   background:
+      radial-gradient(circle,
+         rgba(59, 130, 246, .10),
+         transparent 70%);
+   left: -150px;
+   bottom: -150px;
+   pointer-events: none;
+   z-index: -1;
+}
+
+/* ==========================================
+HOVER EFFECTS
+========================================== */
+.dashboard-card:hover {
+   border-color: rgba(255, 122, 0, .3);
+   transition: .35s;
+}
+
+.profile-box:hover {
+   transform: translateY(-3px);
+}
+
+.score-card {
+   animation: gradientMove 6s infinite alternate;
+}
+
+@keyframes gradientMove {
+   0% {
+      background-position: left;
+   }
+
+   100% {
+      background-position: right;
+   }
+}
+
+/* ==========================================
+RESPONSIVE
+========================================== */
+@media(max-width:1200px) {
+   .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+@media(max-width:992px) {
+   .sidebar {
+      left: -270px;
+   }
+
+   .main-content {
+      margin-left: 0;
+      padding: 20px;
+   }
+
+   .topbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+   }
+
+   .score-card {
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
+   }
+}
+
+@media(max-width:768px) {
+   .stats-grid {
+      grid-template-columns: 1fr;
+   }
+
+   .dashboard-card {
+      padding: 20px;
+   }
+
+   .action-card {
+      margin-bottom: 20px;
+   }
+
+   .table {
+      font-size: 14px;
+   }
+
+   .profile-box {
+      width: 100%;
+      justify-content: center;
+   }
+
+   .score-card h1 {
+      font-size: 50px;
+   }
+
+   .score-card i {
+      font-size: 70px;
+   }
+}
+
+@media(max-width:576px) {
+   .main-content {
+      padding: 15px;
+   }
+
+   .card-header-custom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+   }
+
+   .action-card {
+      padding: 20px;
+   }
+
+   .tip-box {
+      margin-bottom: 20px;
+   }
+}
+
+/* ==========================================
+ANIMATIONS
+========================================== */
+.dashboard-card,
+.action-card,
+.stat-card,
+.tip-box {
+   animation: fadeInUp .8s ease;
+}
+
+@keyframes fadeInUp {
+   from {
+      opacity: 0;
+      transform: translateY(30px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+/* ==========================================
+END OF DASHBOARD CSS
+========================================== */
