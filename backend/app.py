@@ -2,9 +2,12 @@ from flask import Flask, jsonify
 from config import Config
 from database.db import get_connection
 from routes.auth import auth_bp
+from routes.analyze import analyze_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.register_blueprint(auth_bp, url_prefix="/auth")
+app.register_blueprint(analyze_bp)
 
 @app.route("/")
 def home():
@@ -24,8 +27,6 @@ def health():
         "status": "failed",
         "messsage": "Database connection failed!"
     }), 500
-
-app.register_blueprint(auth_bp, url_prefix="/auth")
 
 if __name__ == "__main__":
     app.run(debug=Config.DEBUG)
