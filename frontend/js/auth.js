@@ -20,7 +20,7 @@ if (loginForm) {
             Logging in...
         `;
         try {
-            const response = await fetch(`${API_BASE}/login`, {
+            const response = await fetch(`${API_BASE}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -31,12 +31,14 @@ if (loginForm) {
                 })
             });
             const data = await response.json();
+            console.log(data);
             if (response.ok) {
                 message.innerHTML =
                     `<div class="alert alert-success">${data.message}</div>`;
                 // Store only token (optional)
-                if (data.token) {
-                    localStorage.setItem("token", data.token);
+                if (data.user) {
+                    sessionStorage.setItem("userName", data.user.full_name);
+                    sessionStorage.setItem("userEmail", data.user.email);
                 }
                 setTimeout(() => {
                     window.location.href = "dashboard.html";
@@ -88,13 +90,13 @@ if (registerForm) {
             `<span class="spinner-border spinner-border-sm me-2"></span>
             Creating Account...`;
         try {
-            const response = await fetch(`${API_BASE}/register`, {
+            const response = await fetch(`${API_BASE}/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    fullname,
+                    full_name:fullname,
                     email,
                     password
                 })

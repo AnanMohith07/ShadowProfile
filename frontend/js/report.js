@@ -11,16 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ==========================================
 FETCH REPORT
 ========================================== */
-async function loadReport() {
-    try {
-        const response = await fetch(`${API_BASE}/report`);
-        const data = await response.json();
-        updateDashboard(data);
+function loadReport() {
+    const stored = sessionStorage.getItem("analysisReport");
+    if (!stored) {
+        alert("No analysis found. Please analyze some content first.");
+        window.location.href = "analyze.html";
+        return;
     }
-    catch (error) {
-        console.log("Using demo report...");
-        loadDemoReport();
-    }
+    const data = JSON.parse(stored);
+    updateDashboard(data);
 }
 /* ==========================================
 DEMO DATA
@@ -60,7 +59,64 @@ function loadDemoReport() {
 UPDATE PAGE
 ========================================== */
 function updateDashboard(data) {
-    animateScore(data.score);
+    document.getElementById("identityCount").innerHTML =
+        data.entities.identity.length;
+
+    document.getElementById("contactCount").innerHTML =
+        data.entities.contact.length;
+    const allEntities = [];
+
+    Object.values(data.entities).forEach(group => {
+        allEntities.push(...group);
+    });
+    const riskAlerts = allEntities.filter(entity =>
+        entity.risk === "High" ||
+        entity.risk === "Critical"
+    ).length;
+    document.getElementById("riskCount").innerHTML =
+        riskAlerts;
+
+    const highRisk = allEntities.filter(entity =>
+        entity.risk === "High" ||
+        entity.risk === "Critical"
+    ).length;
+
+
+    const mediumRisk = allEntities.filter(entity =>
+        entity.risk === "Medium"
+    ).length;
+
+
+    const lowRisk = allEntities.filter(entity =>
+        entity.risk === "Low"
+    ).length;
+
+
+    document.getElementById("highRiskCount").innerHTML = highRisk;
+    document.getElementById("mediumRiskCount").innerHTML = mediumRisk;
+    document.getElementById("lowRiskCount").innerHTML = lowRisk;
+
+    // Simple privacy score
+    const scores = Object.values(data.category_scores);
+    const avg = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+    const privacyScore = Math.max(0, Math.min(100, 100 - avg));
+    animateScore(privacyScore);
+
+    const list = document.getElementById("recommendationList");
+    if (list) {
+        list.innerHTML = "";
+        data.recommendations.entity_recommendations.forEach(rec => {
+            list.innerHTML += `
+            <div class="recommendation warning">
+                <i class="bi bi-lightbulb-fill"></i>
+                <div>
+                    <h5>${rec.type} - ${rec.risk}</h5>
+                    <p>${rec.recommendation}</p>
+                </div>
+            </div>`;
+        });
+    }
+
     loadTable(data.entities);
     createCharts(data);
 }
@@ -81,30 +137,38 @@ function animateScore(target) {
 /* ==========================================
 TABLE
 ========================================== */
-function loadTable(list) {
+function loadTable(groups) {
     const table = document.getElementById("entityTable");
-    if (!table) return;
     table.innerHTML = "";
-    list.forEach(item => {
+    const all = [];
+    Object.values(groups).forEach(group => {
+        all.push(...group);
+    });
+
+    all.forEach(item => {
+        let risk =
+            item.risk ||
+            item.risk_key ||
+            "Low";
+
         let badge = "success";
-        if (item.risk === "Medium") {
+
+        if (risk === "Medium")
             badge = "warning";
-        }
-        if (item.risk === "High") {
+
+        if (risk === "High")
             badge = "danger";
-        }
+
         table.innerHTML += `
         <tr>
-        <td>${item.value}</td>
-        <td>${item.category}</td>
-        <td>
-        <span class="badge bg-${badge}">
-        ${item.risk}
-        </span>
-        </td>
-        <td>
-        Detected
-        </td>
+            <td>${item.value}</td>
+            <td>${item.type}</td>
+            <td>
+                <span class="badge bg-${badge}">
+                    ${risk}
+                </span>
+            </td>
+            <td>Detected</td>
         </tr>
         `;
     });
@@ -126,13 +190,23 @@ function createCategoryChart(data) {
             labels: [
                 "Identity",
                 "Contact",
-                "Risk Alerts"
+                "Credentials",
+                "Financial",
+                "Government IDs",
+                "Locations",
+                "Organizations",
+                "Platforms"
             ],
             datasets: [{
                 data: [
-                    data.identity,
-                    data.contact,
-                    data.risks
+                    data.entities.identity.length,
+                    data.entities.contact.length,
+                    data.entities.credentials.length,
+                    data.entities.financial.length,
+                    data.entities.government_ids.length,
+                    data.entities.locations.length,
+                    data.entities.organizations.length,
+                    data.entities.platforms.length
                 ],
                 backgroundColor: [
                     "#ff7a00",
@@ -226,9 +300,25 @@ document.querySelectorAll(".btn-warning")
     .forEach(button => {
         if (button.innerText.includes("Download")) {
             button.addEventListener("click", () => {
-                alert(
-                    "PDF export will be connected with the Flask backend."
-                );
+                fetch(`${API_BASE}/report/download`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: sessionStorage.getItem("analysisReport")
+                })
+                    .then(response => response.blob())
+                    .then(blob => {
+
+                        const url = window.URL.createObjectURL(blob);
+
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.download = "ShadowProfile_Report.pdf";
+                        a.click();
+
+                        window.URL.revokeObjectURL(url);
+                    });
             });
         }
     });

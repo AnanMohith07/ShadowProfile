@@ -11,20 +11,44 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ==========================================
 FETCH PROFILE
 ========================================== */
-async function loadProfile() {
-    try {
-        const response = await fetch(`${API_BASE}/profile`);
-        const user = await response.json();
-        displayProfile(user);
+function loadProfile() {
+    const report =
+        JSON.parse(sessionStorage.getItem("analysisReport"));
+    const fullName =
+        sessionStorage.getItem("userName") || "User";
+    const email =
+        sessionStorage.getItem("userEmail") || "-";
+
+    document.getElementById("userName").textContent = fullName;
+    document.getElementById("userEmail").textContent = email;
+
+    document.getElementById("fullName").value = fullName;
+    document.getElementById("email").value = email;
+
+    document.getElementById("userRole").textContent =
+        "ShadowProfile User";
+    if(report){
+        const scores =
+            Object.values(report.category_scores);
+        const avg =
+            Math.round(
+                scores.reduce((a,b)=>a+b,0)/scores.length
+            );
+        const privacy =
+            Math.max(0,100-avg);
+        const statCards =
+            document.querySelectorAll(".stats-card h2");
+
+        statCards[0].textContent = "1";
+        statCards[1].textContent = "1";
+        statCards[2].textContent = privacy + "%";
+        statCards[3].textContent = "1";
     }
-    catch (error) {
-        console.log("Loading Demo Profile");
-        loadDemoProfile();
-    }
+
 }
 /* ==========================================
 DEMO USER
-========================================== */
+==========================================
 function loadDemoProfile() {
     displayProfile({
         name: "John Doe",
@@ -34,10 +58,10 @@ function loadDemoProfile() {
         organization: "XYZ College",
         role: "Privacy Analyst"
     });
-}
+} */
 /* ==========================================
 DISPLAY PROFILE
-========================================== */
+==========================================
 function displayProfile(user) {
     document.getElementById("userName").innerHTML = user.name;
     document.getElementById("userRole").innerHTML = user.role;
@@ -50,7 +74,7 @@ function displayProfile(user) {
     document.getElementById("phone").value = user.phone;
     document.getElementById("location").value = user.location;
     document.getElementById("organization").value = user.organization;
-}
+}*/
 /* ==========================================
 UPDATE PROFILE
 ========================================== */
@@ -113,8 +137,9 @@ document.querySelector(".btn-outline-danger")
 LOGOUT
 ========================================== */
 function logout() {
-    localStorage.removeItem("token");
-    window.location.href = "login.html";
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href="login.html";
 }
 /* ==========================================
 PROFILE IMAGE ANIMATION

@@ -102,9 +102,7 @@ PRIVACY SCORE
                             <div class="col-md-4">
                                 <div class="mini-card">
                                     <i class="bi bi-person-fill"></i>
-                                    <h2>
-                                        4
-                                    </h2>
+                                    <h2 id="identityCount">0</h2>
                                     <p>
                                         Identity
                                     </p>
@@ -113,9 +111,7 @@ PRIVACY SCORE
                             <div class="col-md-4">
                                 <div class="mini-card">
                                     <i class="bi bi-envelope-fill"></i>
-                                    <h2>
-                                        2
-                                    </h2>
+                                    <h2 id="contactCount">0</h2>
                                     <p>
                                         Contact
                                     </p>
@@ -124,9 +120,7 @@ PRIVACY SCORE
                             <div class="col-md-4">
                                 <div class="mini-card">
                                     <i class="bi bi-shield-exclamation"></i>
-                                    <h2>
-                                        5
-                                    </h2>
+                                    <h2 id="riskCount">0</h2>
                                     <p>
                                         Risk Alerts
                                     </p>
@@ -239,7 +233,7 @@ AI RECOMMENDATIONS
                 <h4>
                     Recommended Actions
                 </h4>
-                <div class="recommendation-list">
+                <div class="recommendation-list" id="recommendationList">
                     <div class="recommendation success">
                         <i class="bi bi-check-circle-fill"></i>
                         <div>
@@ -299,8 +293,8 @@ RISK SUMMARY
                         <h3>
                             High Risk
                         </h3>
-                        <h1>
-                            2
+                        <h1 id="highRiskCount">
+                            0
                         </h1>
                         <p>
                             Sensitive Information
@@ -312,8 +306,8 @@ RISK SUMMARY
                         <h3>
                             Medium Risk
                         </h3>
-                        <h1>
-                            2
+                        <h1 id="mediumRiskCount">
+                            0
                         </h1>
                         <p>
                             Behavioral Exposure
@@ -325,8 +319,8 @@ RISK SUMMARY
                         <h3>
                             Low Risk
                         </h3>
-                        <h1>
-                            4
+                        <h1 id="lowRiskCount">
+                            0
                         </h1>
                         <p>
                             General Information

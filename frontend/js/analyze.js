@@ -9,6 +9,8 @@ const loadingSection = document.getElementById("loadingSection");
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
 const entityTable = document.getElementById("entityTable");
+let categoryChart = null;
+let riskChart = null;
 /* ==========================================
 UPLOAD FILE
 ========================================== */
@@ -47,15 +49,16 @@ async function analyzeContent() {
             "Content-Type": "application/json"
          },
          body: JSON.stringify({
-            content: text
+            text: text
          })
       });
       const data = await response.json();
+      sessionStorage.setItem("analysisReport", JSON.stringify(data));
       displayResults(data);
    }
    catch (error) {
       console.log(error);
-      showDemoResults();
+      //showDemoResults();
    }
 }
 /* ==========================================
@@ -90,25 +93,49 @@ DISPLAY RESULTS
 ========================================== */
 function displayResults(data) {
    loadingSection.classList.add("d-none");
-   document.getElementById("identityCount").innerHTML = data.identity || 0;
-   document.getElementById("contactCount").innerHTML = data.contact || 0;
-   document.getElementById("locationCount").innerHTML = data.location || 0;
-   document.getElementById("riskCount").innerHTML = data.risks || 0;
+   document.getElementById("identityCount").innerHTML =
+      data.entities.identity.length;
+
+   document.getElementById("contactCount").innerHTML =
+      data.entities.contact.length;
+
+   document.getElementById("locationCount").innerHTML =
+      data.entities.locations.length;
+
+   document.getElementById("riskCount").innerHTML =
+      data.report.statistics.total_entities;
+
+   // Clear table
    entityTable.innerHTML = "";
-   data.entities.forEach(entity => {
-      entityTable.innerHTML += `
-<tr>
-<td>${entity.value}</td>
-<td>${entity.category}</td>
-<td>${entity.risk}</td>
-<td>
-<span class="badge bg-success">
-Detected
-</span>
-</td>
-</tr>
-`;
+
+   // Merge all entity categories
+   const allEntities = [];
+   Object.values(data.entities).forEach(category => {
+      allEntities.push(...category);
    });
+   if (allEntities.length === 0) {
+      entityTable.innerHTML = `
+        <tr>
+            <td colspan="4" class="text-center">
+                No sensitive information detected.
+            </td>
+        </tr>`;
+   }
+   else {
+      allEntities.forEach(entity => {
+         entityTable.innerHTML += `
+            <tr>
+                <td>${entity.value}</td>
+                <td>${entity.type}</td>
+                <td>${entity.risk || "Low"}</td>
+                <td>
+                    <span class="badge bg-success">
+                        Detected
+                    </span>
+                </td>
+            </tr>`;
+      });
+   }
    drawCharts(data);
 }
 /* ==========================================
@@ -156,21 +183,24 @@ CHARTS
 function drawCharts(data) {
    const category = document.getElementById("categoryChart");
    if (category) {
-      new Chart(category, {
+      if (categoryChart) {
+         categoryChart.destroy();
+      }
+      categoryChart = new Chart(category, {
          type: "bar",
          data: {
             labels: [
                "Identity",
                "Contact",
-               "Location",
-               "Risks"
+               "Locations",
+               "Detected"
             ],
             datasets: [{
                data: [
-                  data.identity || 4,
-                  data.contact || 2,
-                  data.location || 1,
-                  data.risks || 5
+                  data.entities.identity.length || 4,
+                  data.entities.contact.length || 2,
+                  data.entities.locations.length || 1,
+                  data.report.statistics.total_entities || 5
                ],
                backgroundColor: [
                   "#ff7a00",
@@ -196,7 +226,10 @@ function drawCharts(data) {
    }
    const risk = document.getElementById("riskChart");
    if (risk) {
-      new Chart(risk, {
+      if (riskChart) {
+         riskChart.destroy();
+      }
+      riskChart = new Chart(risk, {
          type: "doughnut",
          data: {
             labels: [

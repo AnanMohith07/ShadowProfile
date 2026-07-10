@@ -77,9 +77,7 @@ MAIN CONTENT
                 </div>
                 <div class="profile-box">
                     <img src="https://i.pravatar.cc/50" alt="Profile">
-                    <span>
-                        John Doe
-                    </span>
+                    <span id="userName">User</span>
                 </div>
             </div>
             <!-- SCORE CARD -->
@@ -93,8 +91,8 @@ MAIN CONTENT
                     </h1>
                     <p>
                         Your digital footprint is currently
-                        <strong>
-                            Low Risk
+                        <strong id="overallRisk">
+                            -
                         </strong>
                     </p>
                 </div>
@@ -106,36 +104,28 @@ MAIN CONTENT
             <div class="stats-grid">
                 <div class="stat-card">
                     <i class="bi bi-search"></i>
-                    <h3>
-                        25
-                    </h3>
+                    <h3 id="analysisCount">0</h3>
                     <p>
                         Analyses
                     </p>
                 </div>
                 <div class="stat-card">
                     <i class="bi bi-exclamation-triangle"></i>
-                    <h3>
-                        8
-                    </h3>
+                    <h3 id="riskCount">0</h3>
                     <p>
                         Detected Risks
                     </p>
                 </div>
                 <div class="stat-card">
                     <i class="bi bi-lightbulb"></i>
-                    <h3>
-                        15
-                    </h3>
+                    <h3 id="recommendationCount">0</h3>
                     <p>
                         Recommendations
                     </p>
                 </div>
                 <div class="stat-card">
                     <i class="bi bi-clock-history"></i>
-                    <h3>
-                        12
-                    </h3>
+                    <h3 id="reportCount">0</h3>
                     <p>
                         Reports
                     </p>
@@ -257,7 +247,7 @@ RECENT ANALYSES
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="recentAnalysisTable">
                             <tr>
                                 <td>
                                     04 Jul 2026

@@ -7,29 +7,72 @@ const API_BASE = "http://127.0.0.1:5000";
 ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
    loadDashboard();
-   initializeCharts();
    animateCards();
+   const userName = sessionStorage.getItem("userName");
+   if (userName) {
+      document.getElementById("userName").textContent = userName;
+   }
 });
 /* ==========================================
    FETCH DASHBOARD DATA
 ========================================== */
-async function loadDashboard() {
-   try {
-      const response = await fetch(`${API_BASE}/dashboard`);
-      const data = await response.json();
-      console.log(data);
-      // Example
-      // document.getElementById("privacyScore").innerHTML =
-      // data.privacy_score + "%";
+function loadDashboard() {
+   const stored = sessionStorage.getItem("analysisReport");
+
+   if (!stored) {
+      return;
    }
-   catch (error) {
-      console.log("Backend not connected");
-   }
+
+   const data = JSON.parse(stored);
+
+   updateDashboard(data);
+}
+function updateDashboard(data) {
+   const scores = Object.values(data.category_scores);
+   const avg = Math.round(
+      scores.reduce((a, b) => a + b, 0) / scores.length
+   );
+   const privacyScore = Math.max(
+      0,
+      Math.min(100, 100 - avg)
+   );
+   animatePrivacyScore(privacyScore);
+   document.getElementById("overallRisk").textContent =
+      data.recommendations.overall.level;
+
+   document.getElementById("riskCount").textContent =
+      data.report.statistics.high +
+      data.report.statistics.critical;
+
+   document.getElementById("recommendationCount").textContent =
+      data.recommendations.entity_recommendations.length;
+
+   document.getElementById("analysisCount").textContent = 1;
+   document.getElementById("reportCount").textContent = 1;
+
+   const table = document.getElementById("recentAnalysisTable");
+   table.innerHTML = `
+      <tr>
+         <td>${new Date(data.report.summary.generated_at).toLocaleDateString()
+         }</td>
+         <td>${privacyScore}%</td>
+         <td>
+            <span class="badge bg-danger">
+               ${data.recommendations.overall.level}
+            </span>
+         </td>
+         <td>Completed</td>
+         <td>
+            <a href="report.html"class="btn btn-warning btn-sm">View</a>
+         </td>
+      </tr>
+   `;
+   initializeCharts(data);
 }
 /* ==========================================
    LINE CHART
 ========================================== */
-function initializeCharts() {
+function initializeCharts(data) {
    const ctx = document.getElementById("privacyChart");
    if (ctx) {
       new Chart(ctx, {
@@ -93,7 +136,12 @@ function initializeCharts() {
                "Credentials"
             ],
             datasets: [{
-               data: [35, 25, 20, 20],
+               data: [
+                  data.entities.identity.length,
+                  data.entities.contact.length,
+                  data.entities.credentials.length,
+                  data.entities.platforms.length
+               ],
                backgroundColor: [
                   "#ff7a00",
                   "#3b82f6",
@@ -142,17 +190,17 @@ function animateCards() {
 /* ==========================================
    SCORE ANIMATION
 ========================================== */
-const score = document.getElementById("privacyScore");
-if (score) {
+function animatePrivacyScore(target) {
+   const score = document.getElementById("privacyScore");
    let current = 0;
-   const target = 87;
-   const timer = setInterval(() => {
-      current++;
-      score.innerHTML = current + "%";
-      if (current >= target) {
-         clearInterval(timer);
-      }
-   }, 20);
+   const timer =
+      setInterval(() => {
+         current++;
+         score.innerHTML = current + "%";
+         if (current >= target) {
+            clearInterval(timer);
+         }
+      }, 20);
 }
 /* ==========================================
    HOVER EFFECT
